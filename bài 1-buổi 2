@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool checkpalin[1003][1003];
+void buildcheck(string &s){
+  for(int len = 1;len <= s.length(); len++){
+   for(int i = 0;i < s.length(); i++){
+      if(len == 1){checkpalin[i][i] = 1;}
+      else if(len == 2 && i < s.length() - 1 && s[i] == s[i+1]){checkpalin[i][i+1] = 1;}
+      else{
+         int j = i + len - 1;
+         if(j == s.length()){break;}
+         else if(s[i] == s[j] && checkpalin[i+1][j-1] == 1){checkpalin[i][j] = 1;}
+      }
+   }
+  }
+}
+bool check(int l, int r){
+	return checkpalin[l][r]; 
+} 
+
+int main(){
+	string a; cin >> a;
+	buildcheck(a); 
+	int cnt = 0; 
+	for(int i= 0; i<a.length(); i++){
+		for(int j = 0; i<a.length(); j++){
+			if(check(l,r)) cnt++; 
+		} 
+	} 
+	cout << cnt << endl; 
+} 
