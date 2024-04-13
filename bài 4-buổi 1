@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool prime[1000001];
+void sangnt(int n){
+	for(int i=2; i<=n; i++){
+		prime[i] = 1; 
+	}
+	prime[0] = prime[1] = 0; 
+	for(int i=2; i<= sqrt(n); i++){
+		if(prime[i]){
+			for(int j=2*i; j<=n; j+=i)
+			prime[j] = 0; 
+		}
+	} 
+}
+
+int main(){
+	int mod = 22082018; 
+	long long n; cin >> n;
+	sangnt(n);
+	long long res = 0; 
+	for(int i=2; i<=n; i++){
+		if(prime[i]) res += (i % mod) % mod; 
+	}
+	cout << res << endl; 
+} 
