@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int product(int n){
+	if(n == 0) return 10;
+	if(n == 1) return 1;
+	int ans = 0; 
+	for(int i=9; i>=2; i--){
+		while(n % i == 0){
+			ans = ans * 10 + i;
+			n /= i; 
+		} 
+	} 
+	int res = 0;
+	while(ans > 0){
+		int du = ans % 10;
+		res = res * 10 + du;
+		ans /= 10; 
+	}
+	return (n == 1) ? res : -1; 
+} 
+
+ 
+int main(){
+	int so; cin >> so;
+	cout << product(so) << endl; 
+} 
